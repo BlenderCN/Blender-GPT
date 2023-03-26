@@ -9,7 +9,7 @@ bl_info = {
 }
 
 import bpy
-from . import ui, operators, gpt4, whisper
+from . import ui, operators, dependencies
 
 class GPT4AddonPreferences(bpy.types.AddonPreferences):
     bl_idname = __name__
@@ -45,6 +45,8 @@ def register():
     bpy.utils.register_class(GPT4AddonPreferences)
     ui.register()
     operators.register()
+
+    dependencies.check_and_install_dependencies()
 
 def unregister():
     bpy.utils.unregister_class(GPT4AddonPreferences)
