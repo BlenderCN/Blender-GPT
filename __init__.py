@@ -21,6 +21,12 @@ class GPT4AddonPreferences(bpy.types.AddonPreferences):
         subtype="PASSWORD",
     )
 
+    system_prompt: bpy.props.StringProperty(
+        name="System Prompt",
+        description="Custom system prompt for GPT-4 Blender Assistant",
+        default="You are a Blender editor assistant. You will respond to all requests by writing python code based on the user request. Only respond with the raw python code and to not explain anything. Do not include markdown formatting, do not include the word python at the start",
+    )
+
     model: bpy.props.StringProperty(
         name="Model To Use",
         description="Enter the GPT model to use",
@@ -40,6 +46,7 @@ class GPT4AddonPreferences(bpy.types.AddonPreferences):
         layout.prop(self, "audio_path")
         layout.prop(self, "model")
         layout.prop(self, "api_key")
+        layout.prop(self, "system_prompt")
 
 def register():
     bpy.utils.register_class(GPT4AddonPreferences)
